@@ -31,4 +31,36 @@ function generateChoice() {
     return choice;
 }
 
-console.log(getComputerChoice());
+function getHumanChoice() {
+    /*
+    READ user input (r = rock, p = paper, s = scissors)
+    IF input is equal to p:
+        RETURN "paper"
+    ELSE IF input is equal to r:
+        RETURN "rock"
+    ELSE IF input is equal to s:
+        RETURN "scissors"
+    ELSE IF input is equal to null:
+        RETURN "no input given"
+    ELSE:
+        RETURN "invalid input"
+    */
+
+    let humanChoice = prompt("Input your choice (r = rock, p = paper, s = scissors): ")
+    if (humanChoice == "r") {
+        return "rock"
+    } else if (humanChoice == "p") {
+        return "paper"
+    } else if (humanChoice == "s") {
+        return "scissors"
+
+    } else if (humanChoice == null) {
+        return "no input given"
+    } else {
+        return "invalid input"
+    }
+
+}
+
+console.log("Computer Choice: " + getComputerChoice());
+console.log("User Choice: " + getHumanChoice());
