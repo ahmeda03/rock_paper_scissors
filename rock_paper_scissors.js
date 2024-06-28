@@ -1,5 +1,9 @@
 // Rock Paper Scissors - Game will be played entirely in the console
 
+// Global Variables
+let humanScore = 0;
+let computerScore = 0;
+
 function getComputerChoice() {
     /*
     Randomly choose value between 1 - 3
