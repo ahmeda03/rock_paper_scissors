@@ -52,13 +52,13 @@ function getHumanChoice() {
     */
 
     let humanChoice = prompt("Input your choice (r = rock, p = paper, s = scissors): ")
-    if (humanChoice == "r") {
+    if (humanChoice === "r") {
         return "rock";
-    } else if (humanChoice == "p") {
+    } else if (humanChoice === "p") {
         return "paper";
-    } else if (humanChoice == "s") {
+    } else if (humanChoice === "s") {
         return "scissors";
-    } else if (humanChoice == null) {
+    } else if (humanChoice === null) {
         return "no input given";
     } else {
         return "invalid input";
