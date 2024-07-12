@@ -109,9 +109,11 @@ function playGame(event) {
     let buttonChosen = event.target.id;
     let humanSelection = buttonChosen;
     let computerSelection = getComputerChoice();
+    let winAmount = 5; // Num of points needed for either player to win
 
     let winnerStr = playRound(humanSelection, computerSelection);
     incrementScore(winnerStr);
+    announceWinner(winAmount);
     displayScore();
 }
 
@@ -144,4 +146,22 @@ function displayScore() {
     */
     let scores = document.querySelector("#scores");
     scores.textContent = `Human Score: ${humanScore} | Computer Score: ${computerScore}`;
+}
+
+function announceWinner(winAmount) {
+    /*
+    IF humanScore is greater than or equal to winAmount THEN
+        DISPLAY human winner message within div
+    ELSE IF computerScore is greater than or equal to winAmount THEN
+        DISPLAY computer winner message within div
+    END IF
+    */
+
+    let winnerResult = document.querySelector("#winnerResult");
+
+    if (humanScore >= winAmount) {
+        winnerResult.textContent = "Congrats! You've won!"
+    } else if (computerScore >= winAmount) {
+        winnerResult.textContent = "Sorry. The computer has won."
+    }
 }
