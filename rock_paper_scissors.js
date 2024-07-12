@@ -53,22 +53,10 @@ function generateChoice() {
 
 function playGame(event) {
     /*
-    INIT playerScore, computerScore to 0
-    INIT playerChoice, computerChoice to NULL
-
-    FOR each round (5 rounds)
-        SET playerChoice by CALLING getHumanChoice
-        SET computerChoice by CALLING getComputerChoice
-        CALL playRound with playChoice and computerChoice RETURNING winnerString
-    ENDFOR
-
-    IF (playerScore == computerScore) THEN
-        DISPLAY tie message
-    ELSE IF (playerScore > computerScore) THEN
-        DISPLAY player 1 win message
-    ELSE 
-        DISPLAY computer win message
-    ENDIF
+    INIT playerChoice to buttonChosen
+    INIT computerChoice by CALLING getComputerChoice
+    CALL playRound with playChoice and computerChoice RETURNING winnerString
+    INCREMENT winner score by CALLING incrementScore with the winnerStr argument
     */
 
     function playRound(humanChoice, computerChoice) {
@@ -80,13 +68,11 @@ function playGame(event) {
         ELSE IF (humanChoice is rock AND computerChoice is scissors) OR 
                 (humanChoice is paper AND computerChoice is rock) OR 
                 (humanChoice is scissors AND computerChoice is paper) THEN
-            INCREMENT human choice score
             DISPLAY human winner message
             RETURN human winner string
         ELSE IF (computerChoice is rock AND humanChoice is scissors) OR 
                 (computerChoice is paper AND humanChoice is rock) OR 
                 (computerChoice is scissors AND humanChoice is paper) THEN
-            INCREMENT computer choice score
             DISPLAY computer winner message
             RETURN computer winner string
         ELSE 
