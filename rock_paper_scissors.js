@@ -20,6 +20,8 @@ rock.addEventListener("click", playGame);
 paper.addEventListener("click", playGame);
 scissors.addEventListener("click", playGame);
 
+displayScore();
+
 function getComputerChoice() {
     /*
     Randomly choose value between 1 - 3
@@ -62,7 +64,7 @@ function playGame(event) {
     function playRound(humanChoice, computerChoice) {
         /*
         SET humanChoice and computerChoice variables to lower case
-        SET roundResult to reference of div that will contain our result string
+        SET roundResult to reference div that will contain our result string
         IF humanChoice is equal to computerChoice THEN
             DISPLAY tie message within div
             RETURN tie string
@@ -110,8 +112,7 @@ function playGame(event) {
 
     let winnerStr = playRound(humanSelection, computerSelection);
     incrementScore(winnerStr);
-
-    console.log(humanScore, computerScore);
+    displayScore();
 }
 
 function incrementScore(winnerStr) {
@@ -134,4 +135,13 @@ function incrementScore(winnerStr) {
     } else {
         console.log("Invalid winner")
     }
+}
+
+function displayScore() {
+    /*
+    INIT score to reference a div that will contain our score string
+    SET score text to the display both the human and computer score
+    */
+    let scores = document.querySelector("#scores");
+    scores.textContent = `Human Score: ${humanScore} | Computer Score: ${computerScore}`;
 }
