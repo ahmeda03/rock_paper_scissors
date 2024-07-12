@@ -1,5 +1,25 @@
 // Rock Paper Scissors - Game will be played entirely in the console
 
+const ROCK = "rock";
+const PAPER = "paper";
+const SCISSORS = "scissors";
+
+const humanWinStr = "HW";
+const computerWinStr = "CW";
+const tieStr = "T";
+
+// Game Scores
+let humanScore = 0;
+let computerScore = 0;
+
+const rock = document.querySelector("#rock");
+const paper = document.querySelector("#paper");
+const scissors = document.querySelector("#scissors");
+
+rock.addEventListener("click", playGame);
+paper.addEventListener("click", playGame);
+scissors.addEventListener("click", playGame);
+
 function getComputerChoice() {
     /*
     Randomly choose value between 1 - 3
@@ -16,13 +36,13 @@ function getComputerChoice() {
 
     let computerChoice = generateChoice()
     if (computerChoice === 1) {
-        return "rock";
+        return ROCK;
     } else if (computerChoice === 2) {
-        return "paper";
+        return PAPER;
     } else if (computerChoice === 3) {
-        return "scissors";
+        return SCISSORS;
     } else {
-        return "invalid number generated";
+        return "Invalid number generated";
     }
 }
 
@@ -31,38 +51,7 @@ function generateChoice() {
     return choice;
 }
 
-function getHumanChoice() {
-    /*
-    READ user input (r = rock, p = paper, s = scissors)
-    IF input is equal to p THEN
-        RETURN "paper"
-    ELSE IF input is equal to r THEN
-        RETURN "rock"
-    ELSE IF input is equal to s THEN
-        RETURN "scissors"
-    ELSE IF input is equal to null THEN
-        RETURN "no input given"
-    ELSE:
-        RETURN "invalid input"
-    ENDIF
-    */
-
-    let humanChoice = prompt("Input your choice (r = rock, p = paper, s = scissors): ")
-    if (humanChoice === "r") {
-        return "rock";
-    } else if (humanChoice === "p") {
-        return "paper";
-    } else if (humanChoice === "s") {
-        return "scissors";
-    } else if (humanChoice === null) {
-        return "no input given";
-    } else {
-        return "invalid input";
-    }
-
-}
-
-function playGame() {
+function playGame(event) {
     /*
     INIT playerScore, computerScore to 0
     INIT playerChoice, computerChoice to NULL
@@ -71,14 +60,6 @@ function playGame() {
         SET playerChoice by CALLING getHumanChoice
         SET computerChoice by CALLING getComputerChoice
         CALL playRound with playChoice and computerChoice RETURNING winnerString
-
-        IF winnerString is player THEN
-            INCREMENT playScore
-        ELSE IF winnerString is computer THEN
-            INCREMENT computerScore
-        ELSE
-            DISPLAY invalid winner message
-        ENDIF
     ENDFOR
 
     IF (playerScore == computerScore) THEN
@@ -118,16 +99,14 @@ function playGame() {
        if (hC === cC) {
             console.log("Tie Game!");
             return tieStr;
-       } else if ((hC === "rock" && cC === "scissors") || 
-                  (hC === "paper" && cC === "rock") || 
-                  (hC === "scissors" && cC === "paper")) {
-            humanScore++;
+       } else if ((hC === ROCK && cC === SCISSORS) || 
+                  (hC === PAPER && cC === ROCK) || 
+                  (hC === SCISSORS && cC === PAPER)) {
             console.log(`You win! ${hC} beats ${cC}.`);
             return humanWinStr;
-       } else if ((cC === "rock" && hC === "scissors") || 
-                  (cC === "paper" && hC === "rock") || 
-                  (cC === "scissors" && hC === "paper")) {
-            computerScore++;
+       } else if ((cC === ROCK && hC === SCISSORS) || 
+                  (cC === PAPER && hC === ROCK) || 
+                  (cC === SCISSORS && hC === PAPER)) {
             console.log(`You lose! ${cC} beats ${hC}.`);  
             return computerWinStr;
         } else {
@@ -135,22 +114,26 @@ function playGame() {
        }
     }
 
-    // Game Scores
-    let humanScore = 0;
-    let computerScore = 0;
+    let buttonChosen = event.target.id;
+    let humanSelection = buttonChosen;
+    let computerSelection = getComputerChoice();
 
-    // Player Selections
-    let humanSelection = null;
-    let computerSelection = null;
+    let winnerStr = playRound(humanSelection, computerSelection);
+    incrementScore(winnerStr);
 
-    let winnerStr = null;
-    let humanWinStr = "HW";
-    let computerWinStr = "CW";
-    let tieStr = "T";
+    console.log(humanScore, computerScore);
+}
 
-    computerSelection = getComputerChoice();
-
-    winnerStr = playRound(humanSelection, computerSelection);
+function incrementScore(winnerStr) {
+    /*
+    IF winnerString is player THEN
+        INCREMENT playScore
+    ELSE IF winnerString is computer THEN
+        INCREMENT computerScore
+    ELSE
+        DISPLAY invalid winner message
+    ENDIF
+    */
 
     if (winnerStr === humanWinStr) {
         humanScore += 1;
@@ -162,7 +145,3 @@ function playGame() {
         console.log("Invalid winner")
     }
 }
-
-
-
-playGame();
