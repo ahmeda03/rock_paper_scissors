@@ -59,6 +59,10 @@ function playGame(event) {
     INIT computerChoice by CALLING getComputerChoice
     CALL playRound with playChoice and computerChoice RETURNING winnerString
     INCREMENT winner score by CALLING incrementScore with the winnerStr argument
+    DISPLAY scores on page by CALLING displayScore
+    DISPLAY winner by CALLING announceWinner
+    RESET winner text if needed by CALLING resetWinnerText
+    RESET score variables if needed by CALLING resetScores
     */
 
     function playRound(humanChoice, computerChoice) {
@@ -117,7 +121,6 @@ function playGame(event) {
     let hasWon = announceWinner(winAmount);
     resetWinnerText(hasWon);
     resetScores(hasWon);
-    // resetGame(winAmount, winnerResult, hasWon);
 }
 
 function incrementScore(winnerStr) {
