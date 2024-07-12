@@ -62,41 +62,45 @@ function playGame(event) {
     function playRound(humanChoice, computerChoice) {
         /*
         SET humanChoice and computerChoice variables to lower case
+        SET roundResult to reference of div that will contain our result string
         IF humanChoice is equal to computerChoice THEN
-            DISPLAY tie message
+            DISPLAY tie message within div
             RETURN tie string
         ELSE IF (humanChoice is rock AND computerChoice is scissors) OR 
                 (humanChoice is paper AND computerChoice is rock) OR 
                 (humanChoice is scissors AND computerChoice is paper) THEN
-            DISPLAY human winner message
+            DISPLAY human winner message within div 
             RETURN human winner string
         ELSE IF (computerChoice is rock AND humanChoice is scissors) OR 
                 (computerChoice is paper AND humanChoice is rock) OR 
                 (computerChoice is scissors AND humanChoice is paper) THEN
-            DISPLAY computer winner message
+            DISPLAY computer winner message within div
             RETURN computer winner string
         ELSE 
-            DISPLAY invalid round message
+            DISPLAY invalid round message within div
         ENDIF
         */
        let hC = humanChoice.toLowerCase();
        let cC = computerChoice.toLowerCase();
+
+       let roundResult = document.querySelector("#roundResult");
+       roundResult.textContent = "Result: ";
     
        if (hC === cC) {
-            console.log("Tie Game!");
+            roundResult.textContent += "Tie Game!";
             return tieStr;
        } else if ((hC === ROCK && cC === SCISSORS) || 
                   (hC === PAPER && cC === ROCK) || 
                   (hC === SCISSORS && cC === PAPER)) {
-            console.log(`You win! ${hC} beats ${cC}.`);
+            roundResult.textContent += `You win! ${hC} beats ${cC}.`;
             return humanWinStr;
        } else if ((cC === ROCK && hC === SCISSORS) || 
                   (cC === PAPER && hC === ROCK) || 
                   (cC === SCISSORS && hC === PAPER)) {
-            console.log(`You lose! ${cC} beats ${hC}.`);  
+            roundResult.textContent += `You lose! ${cC} beats ${hC}.`; 
             return computerWinStr;
         } else {
-            console.log("Try again. You have inputted in an invalid choice.");
+            roundResult.textContent += "Try again. You have inputted in an invalid choice.";
        }
     }
 
