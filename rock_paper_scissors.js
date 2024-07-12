@@ -143,36 +143,23 @@ function playGame() {
     let humanSelection = null;
     let computerSelection = null;
 
-    let numOfRounds = 5;
-
     let winnerStr = null;
     let humanWinStr = "HW";
     let computerWinStr = "CW";
     let tieStr = "T";
 
-    for (let i = 0; i < numOfRounds; i++) {
-        humanSelection = getHumanChoice();
-        computerSelection = getComputerChoice();
+    computerSelection = getComputerChoice();
 
-        winnerStr = playRound(humanSelection, computerSelection);
+    winnerStr = playRound(humanSelection, computerSelection);
 
-        if (winnerStr === humanWinStr) {
-            humanScore += 1;
-        } else if (winnerStr === computerWinStr) {
-            computerScore += 1;
-        } else if (winnerStr === tieStr) {
-            // Do nothing
-        } else {
-            console.log("Invalid winner")
-        }
-    }
-    
-    if (humanScore === computerScore) {
-        console.log("Tie game between 5 rounds!")
-    } else if (humanScore > computerScore) {
-        console.log("You win between the 5 rounds!")
+    if (winnerStr === humanWinStr) {
+        humanScore += 1;
+    } else if (winnerStr === computerWinStr) {
+        computerScore += 1;
+    } else if (winnerStr === tieStr) {
+        // Do nothing
     } else {
-        console.log("You lose, the computer wins between the 5 rounds!")
+        console.log("Invalid winner")
     }
 }
 
