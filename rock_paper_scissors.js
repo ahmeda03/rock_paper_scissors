@@ -113,8 +113,11 @@ function playGame(event) {
 
     let winnerStr = playRound(humanSelection, computerSelection);
     incrementScore(winnerStr);
-    announceWinner(winAmount);
     displayScore();
+    let hasWon = announceWinner(winAmount);
+    resetWinnerText(hasWon);
+    resetScores(hasWon);
+    // resetGame(winAmount, winnerResult, hasWon);
 }
 
 function incrementScore(winnerStr) {
@@ -161,7 +164,25 @@ function announceWinner(winAmount) {
 
     if (humanScore >= winAmount) {
         winnerResult.textContent = "Congrats! You've won!"
+        return true;
     } else if (computerScore >= winAmount) {
         winnerResult.textContent = "Sorry. The computer has won."
+        return true;
+    }
+
+    return false;
+}
+
+function resetWinnerText(hasWon) {
+    if (!hasWon) {
+        let winnerResultStr = document.querySelector("#winnerResult");
+        winnerResultStr.textContent = "";
+    }
+}
+
+function resetScores(hasWon) {
+    if (hasWon) {
+        humanScore = 0;
+        computerScore = 0;
     }
 }
