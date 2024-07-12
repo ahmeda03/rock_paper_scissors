@@ -174,6 +174,12 @@ function announceWinner(winAmount) {
 }
 
 function resetWinnerText(hasWon) {
+    /*
+    IF neither player has won THEN
+        clear winner result text on page
+    END IF
+    */
+
     if (!hasWon) {
         let winnerResultStr = document.querySelector("#winnerResult");
         winnerResultStr.textContent = "";
@@ -181,6 +187,11 @@ function resetWinnerText(hasWon) {
 }
 
 function resetScores(hasWon) {
+    /*
+    IF either player has won THEN
+        reset scores
+    END IF
+    */
     if (hasWon) {
         humanScore = 0;
         computerScore = 0;
